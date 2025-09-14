@@ -57,6 +57,27 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        web3: {
+          purple: "hsl(var(--web3-purple))",
+          cyan: "hsl(var(--web3-cyan))",
+          blue: "hsl(var(--web3-blue))",
+          dark: "hsl(var(--web3-dark))",
+          card: "hsl(var(--web3-card))",
+          border: "hsl(var(--web3-border))",
+        },
+      },
+      backgroundImage: {
+        'gradient-cosmic': 'var(--gradient-cosmic)',
+        'gradient-hero': 'var(--gradient-hero)',
+        'gradient-card': 'var(--gradient-card)',
+      },
+      boxShadow: {
+        'cosmic': 'var(--shadow-cosmic)',
+        'glow': 'var(--shadow-glow)',
+        'card': 'var(--shadow-card)',
+      },
+      transitionTimingFunction: {
+        'cosmic': 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
       borderRadius: {
         lg: "var(--radius)",
