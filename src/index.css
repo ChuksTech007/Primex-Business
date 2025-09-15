@@ -6,54 +6,58 @@
 
 @layer base {
   :root {
-    /* Cosmic color palette */
-    --background: 230 23% 9%;
-    --foreground: 0 0% 100%;
+    /* Modern cosmic color palette */
+    --background: 220 25% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 230 20% 11%;
-    --card-foreground: 0 0% 100%;
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 230 20% 11%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 0 0% 96%;
 
     --primary: 261 83% 58%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 180 100% 50%;
-    --secondary-foreground: 230 23% 9%;
+    --secondary: 191 85% 55%;
+    --secondary-foreground: 220 25% 8%;
 
-    --muted: 230 15% 15%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 0 0% 75%;
 
-    --accent: 270 100% 80%;
-    --accent-foreground: 230 23% 9%;
+    --accent: 270 100% 75%;
+    --accent-foreground: 220 25% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 230 15% 20%;
-    --input: 230 15% 15%;
+    --border: 220 20% 22%;
+    --input: 220 20% 16%;
     --ring: 261 83% 58%;
 
     --radius: 0.75rem;
 
-    /* Custom Web3 tokens */
+    /* Enhanced Web3 tokens */
     --web3-purple: 261 83% 58%;
-    --web3-cyan: 180 100% 50%;
+    --web3-cyan: 191 85% 55%;
     --web3-blue: 217 91% 60%;
-    --web3-dark: 230 23% 9%;
-    --web3-card: 230 20% 11%;
-    --web3-border: 230 15% 20%;
+    --web3-dark: 220 25% 8%;
+    --web3-card: 220 20% 12%;
+    --web3-border: 220 20% 22%;
+    
+    /* Section backgrounds - lighter and more varied */
+    --section-gray-900: 218 20% 12%;
+    --section-gray-800: 216 18% 16%;
 
-    /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(var(--web3-purple)), hsl(var(--web3-cyan)));
-    --gradient-hero: linear-gradient(135deg, hsl(230 23% 9%), hsl(261 83% 58% / 0.2), hsl(180 100% 50% / 0.1));
-    --gradient-card: linear-gradient(135deg, hsl(var(--web3-card)), hsl(230 15% 15%));
+    /* Enhanced gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(261 83% 58%), hsl(191 85% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 25% 8%), hsl(261 83% 58% / 0.15), hsl(191 85% 55% / 0.1));
+    --gradient-card: linear-gradient(135deg, hsl(220 20% 12%), hsl(220 15% 18%));
 
-    /* Shadows and effects */
-    --shadow-cosmic: 0 25px 50px -12px hsl(var(--web3-purple) / 0.25);
-    --shadow-glow: 0 0 50px hsl(var(--web3-cyan) / 0.3);
-    --shadow-card: 0 4px 20px hsl(230 23% 9% / 0.3);
+    /* Enhanced shadows and effects */
+    --shadow-cosmic: 0 25px 50px -12px hsl(261 83% 58% / 0.3);
+    --shadow-glow: 0 0 50px hsl(191 85% 55% / 0.4);
+    --shadow-card: 0 8px 32px hsl(220 25% 8% / 0.4);
 
     /* Animations */
     --transition-cosmic: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
