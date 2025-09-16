@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-web3-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-web3-dark">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 rounded-full bg-gradient-cosmic"></div>
@@ -17,7 +17,7 @@ const Navigation = () => {
         </div>
         
         <Button variant="hero" className="bg-gradient-cosmic text-white font-semibold px-6 py-2 rounded-full hover:shadow-glow transition-all duration-300">
-          Get Started
+          <a href="#contact">Get Started</a>
         </Button>
       </div>
     </nav>
