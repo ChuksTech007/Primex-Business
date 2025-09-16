@@ -51,14 +51,6 @@ const About = () => {
     config: { mass: 1, tension: 200, friction: 20 },
     delay: 400,
   });
-  
-  const [achievementsRef, achievementsInView] = useInView({ once: true });
-  const achievementsProps = useSpring({
-    opacity: achievementsInView ? 1 : 0,
-    y: achievementsInView ? 0 : 50,
-    config: { mass: 1, tension: 200, friction: 20 },
-    delay: 600,
-  });
 
   return (
     <section id="about" className="py-24 bg-section lg:px-12">
@@ -76,7 +68,7 @@ const About = () => {
 
             <animated.div ref={contentRef} style={contentProps} className="space-y-6 mb-8">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                At Primex Business, we're not just building technology – we're architecting the future. 
+                At Primex Business, we're not just building technology - we're architecting the future. 
                 Our innovative approach combines deep blockchain expertise with a collaborative mindset to 
                 deliver solutions that drive real impact.
               </p>
@@ -92,17 +84,24 @@ const About = () => {
               </Button>
             </animated.div>
 
-            <animated.div ref={achievementsRef} style={achievementsProps} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {achievements.map((achievement, index) => (
-                <Badge 
-                  key={index} 
-                  variant="secondary" 
-                  className="bg-web3-card text-web3-cyan border-web3-border p-3 text-center hover:text-white"
-                >
-                  {achievement}
-                </Badge>
-              ))}
-            </animated.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {achievements.map((achievement, index) => {
+                const [achievementRef, achievementInView] = useInView({ once: true });
+                const achievementProps = useSpring({
+                  opacity: achievementInView ? 1 : 0,
+                  y: achievementInView ? 0 : 20,
+                  config: { mass: 1, tension: 200, friction: 20 },
+                  delay: index * 50,
+                });
+                return (
+                  <animated.div ref={achievementRef} style={achievementProps} key={index}>
+                    <Badge key={index} variant="secondary" className="bg-web3-card text-web3-cyan border-web3-border p-3 text-center hover:text-white">
+                      {achievement}
+                    </Badge>
+                  </animated.div>
+                );
+              })}
+            </div>
           </div>
           
           <animated.div ref={valuesRef} style={valueProps} className="space-y-8">
