@@ -1,6 +1,8 @@
+// Services.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Code, Shield, Zap, Beaker, GraduationCap, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Services = () => {
   const services = [
@@ -10,7 +12,7 @@ const Services = () => {
       icon: Code,
       features: [
         "Smart Contract Development",
-        "DApp Creation", 
+        "DApp Creation",
         "Token Development",
         "Web3 Integration"
       ]
@@ -72,54 +74,83 @@ const Services = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  };
+
   return (
     <section id="services" className="py-24 bg-gray-900 lg:px-12">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+      <motion.div
+        className="container mx-auto px-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.div variants={itemVariants} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Web3 Services</h2>
           <p className="text-xl text-white max-w-3xl mx-auto">
             Comprehensive blockchain solutions designed to drive innovation, collaboration, and measurable impact for your business.
           </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+        >
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <Card key={index} className="bg-gradient-card border-web3-border hover:shadow-card transition-all duration-300 group">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-gradient-cosmic flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
-                    <IconComponent className="w-6 h-6 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-foreground">{service.title}</CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-web3-cyan mr-3"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button variant="outline" className="w-full border-web3-border hover:bg-gradient-cosmic">
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Card>
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="bg-gradient-card border-web3-border hover:shadow-card transition-all duration-300 group">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-gradient-cosmic flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    <CardTitle className="text-xl text-foreground">{service.title}</CardTitle>
+                    <CardDescription className="text-muted-foreground">
+                      {service.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 mb-6">
+                      {service.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-web3-cyan mr-3"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button variant="outline" className="w-full border-web3-border hover:bg-gradient-cosmic">
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             );
           })}
-        </div>
-        
-        <div className="text-center">
+        </motion.div>
+
+        <motion.div variants={itemVariants} className="text-center">
           <Button variant="hero" size="lg" className="px-8 py-4 text-lg">
             Explore All Services
           </Button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
