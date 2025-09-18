@@ -1,6 +1,8 @@
+// About.tsx
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useSpring, useInView, animated } from "@react-spring/web";
 
 const About = () => {
   const achievements = [
@@ -27,19 +29,56 @@ const About = () => {
     }
   ];
 
+  // Animation for the main header
+  const [headerRef, headerInView] = useInView({ once: true });
+  const headerProps = useSpring({
+    opacity: headerInView ? 1 : 0,
+    y: headerInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+  });
+
+  // Animation for the main text and button
+  const [contentRef, contentInView] = useInView({ once: true });
+  const contentProps = useSpring({
+    opacity: contentInView ? 1 : 0,
+    y: contentInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+    delay: 200,
+  });
+
+  // Animation for the achievements badges
+  const [achievementsRef, achievementsInView] = useInView({ once: true });
+  const achievementsProps = useSpring({
+    opacity: achievementsInView ? 1 : 0,
+    y: achievementsInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+    delay: 400,
+  });
+
+  // Animation for the values and mission section
+  const [valuesRef, valuesInView] = useInView({ once: true, amount: 0.5 });
+  const valuesProps = useSpring({
+    opacity: valuesInView ? 1 : 0,
+    y: valuesInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+    delay: 600,
+  });
+
   return (
     <section id="about" className="py-24 bg-section lg:px-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Pioneering the{" "}
-              <span className="bg-gradient-cosmic bg-clip-text text-transparent">
-                Web3 Revolution
-              </span>
-            </h2>
+            <animated.div ref={headerRef} style={headerProps}>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                Pioneering the{" "}
+                <span className="bg-gradient-cosmic bg-clip-text text-transparent">
+                  Web3 Revolution
+                </span>
+              </h2>
+            </animated.div>
             
-            <div className="space-y-6 mb-8">
+            <animated.div ref={contentRef} style={contentProps} className="space-y-6 mb-8">
               <p className="text-lg text-muted-foreground leading-relaxed">
                 At Primex Business, we're not just building technology – we're architecting the future. 
                 Our innovative approach combines deep blockchain expertise with a collaborative mindset to 
@@ -50,22 +89,24 @@ const About = () => {
                 We empower businesses to embrace the decentralized future through comprehensive consulting, 
                 cutting-edge development, and transformative learning opportunities.
               </p>
-            </div>
+            </animated.div>
             
-            <Button variant="hero" size="lg" className="mb-8">
-              Partner With Us
-            </Button>
+            <animated.div style={contentProps}>
+              <Button variant="hero" size="lg" className="mb-8">
+                Partner With Us
+              </Button>
+            </animated.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <animated.div ref={achievementsRef} style={achievementsProps} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {achievements.map((achievement, index) => (
                 <Badge key={index} variant="secondary" className="bg-web3-card text-web3-cyan border-web3-border p-3 text-center hover:text-white">
                   {achievement}
                 </Badge>
               ))}
-            </div>
+            </animated.div>
           </div>
           
-          <div className="space-y-8">
+          <animated.div ref={valuesRef} style={valuesProps} className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold mb-6 text-foreground">Our Core Values</h3>
               <p className="text-muted-foreground mb-8">
@@ -92,7 +133,7 @@ const About = () => {
                 and innovative digital future where everyone can participate and thrive.
               </p>
             </div>
-          </div>
+          </animated.div>
         </div>
       </div>
     </section>

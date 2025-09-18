@@ -1,46 +1,94 @@
+// Contact.tsx
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useSpring, useInView, animated } from "@react-spring/web";
 
 const Contact = () => {
+  const contactInfo = [
+    { icon: Mail, title: "Email Us", desc: "Get in touch for any inquiries", text: "hello@primexbusiness.com" },
+    { icon: Phone, title: "Call Us", desc: "Speak directly with our experts", text: "+1 (555) 123-4567" },
+    { icon: MapPin, title: "Visit Us", desc: "Our headquarters location", text: "San Francisco, CA" },
+  ];
+
+  // Animation for the header
+  const [headerRef, headerInView] = useInView({ once: true });
+  const headerProps = useSpring({
+    opacity: headerInView ? 1 : 0,
+    y: headerInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+  });
+
+  // Animation for the contact info cards
+  const [infoRef, infoInView] = useInView({ once: true, amount: 0.5 });
+  const infoProps = useSpring({
+    opacity: infoInView ? 1 : 0,
+    y: infoInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+    delay: 200,
+  });
+
+  // Animation for the two CTAs on the left
+  const [ctaRef, ctaInView] = useInView({ once: true, amount: 0.3 });
+  const ctaProps = useSpring({
+    opacity: ctaInView ? 1 : 0,
+    x: ctaInView ? 0 : -50,
+    config: { mass: 1, tension: 200, friction: 20 },
+    delay: 400,
+  });
+
+  // Animation for the contact form
+  const [formRef, formInView] = useInView({ once: true, amount: 0.3 });
+  const formProps = useSpring({
+    opacity: formInView ? 1 : 0,
+    x: formInView ? 0 : 50,
+    config: { mass: 1, tension: 200, friction: 20 },
+    delay: 600,
+  });
+
   return (
     <section id="contact" className="py-24 bg-gray-900 lg:px-12">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
+        <animated.div ref={headerRef} style={headerProps} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Transform Your Business?
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Let's discuss how we can help you navigate the Web3 landscape and achieve your blockchain goals.
           </p>
-        </div>
+        </animated.div>
 
         {/* Top Row: Contact Info */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          {[
-            { icon: Mail, title: "Email Us", desc: "Get in touch for any inquiries", text: "hello@primexbusiness.com" },
-            { icon: Phone, title: "Call Us", desc: "Speak directly with our experts", text: "+1 (555) 123-4567" },
-            { icon: MapPin, title: "Visit Us", desc: "Our headquarters location", text: "San Francisco, CA" },
-          ].map((item, i) => (
-            <div key={i} className="bg-gradient-card border border-web3-border rounded-xl p-6 text-center">
+        <div ref={infoRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          {contactInfo.map((item, i) => (
+            <animated.div 
+              key={i} 
+              style={{
+                ...infoProps,
+                y: infoInView ? 0 : 50,
+                x: 0,
+                delay: infoProps.delay + (i * 100), // Staggered delay for each card
+              }}
+              className="bg-gradient-card border border-web3-border rounded-xl p-6 text-center"
+            >
               <div className="w-12 h-12 rounded-lg bg-gradient-cosmic flex items-center justify-center mx-auto mb-4">
                 <item.icon className="w-6 h-6 text-white" />
               </div>
               <h4 className="text-lg font-semibold text-white mb-2">{item.title}</h4>
               <p className="text-sm text-muted-foreground mb-3">{item.desc}</p>
               <p className="text-web3-cyan font-medium">{item.text}</p>
-            </div>
+            </animated.div>
           ))}
         </div>
 
         {/* Bottom Row: Left CTAs + Right Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Side CTAs */}
-          <div className="space-y-8 lg:col-span-1">
+          <animated.div ref={ctaRef} style={ctaProps} className="space-y-8 lg:col-span-1">
             <div className="p-8 rounded-xl border border-web3-border bg-gradient-card text-center">
               <h3 className="text-2xl font-bold mb-4">Schedule a Consultation</h3>
               <p className="text-muted-foreground mb-6">
@@ -62,10 +110,10 @@ const Contact = () => {
                 View Case Studies
               </Button>
             </div>
-          </div>
+          </animated.div>
 
           {/* Right Side: Form */}
-          <div className="lg:col-span-1 flex justify-center">
+          <animated.div ref={formRef} style={formProps} className="lg:col-span-1 flex justify-center">
             <div className="bg-gradient-card border border-web3-border rounded-xl lg:p-8 p-4 w-full max-w-2xl">
               <h3 className="text-2xl font-bold mb-8">Send us a Message</h3>
               <form className="space-y-6">
@@ -116,7 +164,7 @@ const Contact = () => {
                 </Button>
               </form>
             </div>
-          </div>
+          </animated.div>
         </div>
       </div>
     </section>

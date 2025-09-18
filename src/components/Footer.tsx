@@ -1,19 +1,19 @@
 // Footer.tsx
-import { Mail, Twitter, Linkedin, Github } from "lucide-react";
+import { Facebook, Twitter, Instagram, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className=" border-t border-web3-border/50 py-12 lg:px-12">
+    <footer className="border-t border-web3-border/50 py-12 lg:px-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Logo and Mission */}
-            <div className="col-span-1 md:col-span-2">
-                <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-full bg-gradient-cosmic"></div>
-                <span className="text-xl font-bold text-foreground">Primex Business</span>
+          <div className="col-span-1 md:col-span-2">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-gradient-cosmic"></div>
+              <span className="text-xl font-bold text-foreground">Primex Business</span>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-sm mt-4">
               Architecting the decentralized future with comprehensive Web3 solutions and expert consulting.
@@ -41,15 +41,24 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white transition-colors hover:bg-web3-cyan">
-                <Twitter className="w-6 h-6" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white transition-colors hover:bg-web3-cyan">
-                <Linkedin className="w-6 h-6" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white transition-colors hover:bg-web3-cyan">
-                <Github className="w-6 h-6" />
-              </Button>
+              {/* Facebook Icon with Link */}
+              <a href="https://www.facebook.com/share/1BL1W4iMQY/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white transition-colors hover:bg-web3-cyan">
+                  <Facebook className="w-6 h-6" />
+                </Button>
+              </a>
+              {/* Twitter Icon with Link */}
+              <a href="https://x.com/primexconsults?s=21&t=sbMUrJf2d3swpnhJx-YttQ" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white transition-colors hover:bg-web3-cyan">
+                  <Twitter className="w-6 h-6" />
+                </Button>
+              </a>
+              {/* Instagram Icon with Link */}
+              <a href="https://www.instagram.com/primexbusiness.agency?igsh=MWY5eHVhdWVzNWw3NQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-white transition-colors hover:bg-web3-cyan">
+                  <Instagram className="w-6 h-6" />
+                </Button>
+              </a>
             </div>
           </div>
         </div>
